@@ -32,7 +32,6 @@ theme.loadSyntax = function()
 		Underlined = { fg = nord.nord14_gui, bg = nord.none, style = "underline" }, -- text that stands out, HTML links
 		Ignore = { fg = nord.nord1_gui }, -- left blank, hidden
 		Error = { fg = nord.nord11_gui, bg = nord.none, style = "bold,underline" }, -- any erroneous construct
-		Todo = { fg = nord.nord13_gui, bg = nord.none, style = "bold,italic" }, -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 		Conceal = { fg = nord.none, bg = nord.nord0_gui },
 
 		htmlLink = { fg = nord.nord14_gui, style = "underline" },
@@ -58,6 +57,7 @@ theme.loadSyntax = function()
 		syntax.Keyword = { fg = nord.nord9_gui } -- normal for, do, while, etc.
 		syntax.Repeat = { fg = nord.nord9_gui } -- normal any other keyword
 		syntax.String = { fg = nord.nord14_gui } -- any string
+		syntax.Todo = { fg = nord.nord13_gui, bg = nord.none, style = "bold" } -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 	else
 		syntax.Comment = { fg = nord.nord3_gui_bright, bg = nord.none, style = "italic" } -- italic comments
 		syntax.Conditional = { fg = nord.nord9_gui, bg = nord.none, style = "italic" } -- italic if, then, else, endif, switch, etc.
@@ -66,6 +66,7 @@ theme.loadSyntax = function()
 		syntax.Keyword = { fg = nord.nord9_gui, bg = nord.none, style = "italic" } -- italic for, do, while, etc.
 		syntax.Repeat = { fg = nord.nord9_gui, bg = nord.none, style = "italic" } -- italic any other keyword
 		syntax.String = { fg = nord.nord14_gui, bg = nord.none, style = "italic" } -- any string
+		syntax.Todo = { fg = nord.nord13_gui, bg = nord.none, style = "bold,italic" } -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 	end
 
 	return syntax
@@ -147,6 +148,15 @@ theme.loadEditor = function()
 		BufferLineIndicatorSelected = { fg = nord.nord0_gui },
 		BufferLineFill = { bg = nord.nord0_gui },
 	}
+
+	if vim.g.nord_italic == false then
+		editor.Folded = { fg = nord.nord3_gui_bright, bg = nord.none }
+		editor.SpellBad = { fg = nord.nord11_gui, bg = nord.none, style = "undercurl" }
+		editor.SpellCap = { fg = nord.nord7_gui, bg = nord.none, style = "undercurl" }
+		editor.SpellLocal = { fg = nord.nord8_gui, bg = nord.none, style = "undercurl" }
+		editor.SpellRare = { fg = nord.nord9_gui, bg = nord.none, style = "undercurl" }
+		editor.DashboardFooter = { fg = nord.nord14_gui }
+	end
 
 	-- Options:
 
@@ -518,6 +528,11 @@ theme.loadPlugins = function()
 		StatusLineDull = { fg = nord.nord3_gui, bg = nord.nord1_gui },
 		StatusLineAccent = { fg = nord.nord0_gui, bg = nord.nord13_gui },
 	}
+
+
+	if vim.g.nord_italic == false then
+		WhichKeyDesc = { fg = nord.nord7_gui }
+	end
 	-- Options:
 
 	-- Disable nvim-tree background
